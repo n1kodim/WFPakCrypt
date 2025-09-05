@@ -254,7 +254,7 @@ bool ZipDir::BuildFileEntryMap(file f, file fo, bool older_support)
 
 	for (;pFileName <= pEndOfData; pFile = (CDRFileHeader*)pEndOfRecord, pFileName = pEndOfRecord + sizeof(CDRFileHeader))
 	{
-		pFile->lSignature = 0;
+		//pFile->lSignature = 0;
 
 		if (pFile->nVersionNeeded > 20) {
 			printf("Cannot read the archive file (nVersionNeeded > 20).\n");
@@ -314,8 +314,7 @@ bool ZipDir::BuildFileEntryMap(file f, file fo, bool older_support)
 			return false;
 		}
 
-
-		pFile->nMethod = 0;
+		pFile->nMethod = SwitchMethod(pFile->nMethod);
 
 		fseek_(fo, nBufferLength + pFile->lLocalHeaderOffset, SEEK_SET);
 		if (!fwrite_b(pSrc, pFile->desc.lSizeCompressed, fo))
