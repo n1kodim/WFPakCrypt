@@ -234,8 +234,13 @@ bool ZipDir::BuildFileEntryMap(file f, file fo, bool older_support)
 
 	if (!ReadHeaderData(pDest, m_CDREnd.lCDRSize, older_support))
 	{
-		printf("Failed to decrypt custom ReadHeaderData");
-		return false;
+		if (!older_support) {
+			return BuildFileEntryMap(f, fo, true);
+		}
+		else {
+			printf("Failed to decrypt custom ReadHeaderData");
+			return false;
+		}
 	}
 
 

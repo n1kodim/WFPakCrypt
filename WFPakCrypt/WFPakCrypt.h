@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include <fstream>
+#include <filesystem>
+#include <vector>
+#include <sstream>
 
 
 #define LTC_SOURCE

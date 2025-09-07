@@ -12,5 +12,5 @@ namespace ZipEncrypt {
 		int						hash_idx,	int				padding,
 		int*					stat,		rsa_key*		key);
 	bool DecryptBufferWithStreamCipher(char* inBuffer, unsigned int bufferSize, char* key, char* IV);
-	bool RSA_VerifyData(void* inBuffer, int sizeIn, char* signedHash, int signedHashSize, rsa_key* publicKey);
+	bool RSA_VerifyData(char* inBuffer, int sizeIn, char* signedHash, int signedHashSize, rsa_key* publicKey);
 }
