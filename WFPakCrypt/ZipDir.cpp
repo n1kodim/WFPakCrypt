@@ -313,10 +313,11 @@ bool ZipDir::BuildFileEntryMap(file f, file fo, bool older_support)
 			return false;
 		}
 
-
-		if (!Decrypt(pSrc, pFile->desc.lSizeCompressed, pFile->desc)) {
-			printf("Cannot decrypt file.");
-			return false;
+		if ((pFile->nMethod == 13 || pFile->nMethod == 14 || pFile->nMethod == 11 || pFile->nMethod == 12) && pFile->desc.lSizeCompressed != 0) {
+			if (!Decrypt(pSrc, pFile->desc.lSizeCompressed, pFile->desc)) {
+				printf("Cannot decrypt file.");
+				return false;
+			}
 		}
 
 		pFile->nMethod = SwitchMethod(pFile->nMethod);

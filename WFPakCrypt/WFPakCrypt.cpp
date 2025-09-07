@@ -121,10 +121,7 @@ int main(int argc, char** argv) {
 		g_RSAKeyData[i] = keyData[i];
 	}
 
-	printf("%i", keyData.size());
-
 	InitRSA(g_RSAKeyData);
-
 
 	std::string inputPath = argv[1];
 	std::vector<char*> pakFiles;
