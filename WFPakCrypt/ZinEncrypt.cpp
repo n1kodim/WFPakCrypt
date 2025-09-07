@@ -89,30 +89,30 @@ namespace ZipEncrypt {
 		return true;
 	}
 
-	bool RSA_VerifyData(void* inBuffer, int sizeIn, char* signedHash, int signedHashSize, rsa_key* publicKey)
+	bool RSA_VerifyData(char* inBuffer, int sizeIn, char* signedHash, int signedHashSize, rsa_key* publicKey)
 	{
-		/*int v5;
-		char hash_digest[1024];
+		unsigned char hash_digest[1024];
 		Hash_state md;
-		int statOut;
 
 		int sha256 = find_hash("sha256");
-		((void(__cdecl*)(Hash_state*))dword_1C52F84[26 * v5])(&md);
-		((void(__cdecl*)(Hash_state*, void*, int))dword_1C52F88[26 * v5])(&md, inBuffer, sizeIn);
-		((void(__cdecl*)(Hash_state*, char*))dword_1C52F8C[26 * v5])(&md, hash_digest);
+
+		sha256_init(&md);
+		sha256_process(&md, (const unsigned char*)inBuffer, (unsigned long)sizeIn);
+		sha256_done(&md, hash_digest);
+
 		find_prng("yarrow");
-		statOut = 0;
+		int statOut = 0;
+
 		return !rsa_verify_hash_ex(
-			(int)signedHash,
+			(const unsigned char*)signedHash,
 			signedHashSize,
-			(int)hash_digest,
+			(const unsigned char*)hash_digest,
 			32,
 			3,
 			sha256,
 			0,
-			(int)&statOut,
-			(int)publicKey)
-			&& statOut == 1;*/
-		return true;
+			&statOut,
+			publicKey)
+			&& statOut == 1;
 	}
 }
